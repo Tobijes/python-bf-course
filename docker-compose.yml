@@ -1,0 +1,28 @@
+
+services:
+  
+  nginx-proxy:
+    image: nginx:latest
+    container_name: nginx_proxy
+    ports:
+      - "8000:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx/jupyter_proxy.conf:/etc/nginx/jupyter_proxy.conf
+    depends_on:
+      - jupyter-server1
+      - jupyter-server2
+
+  jupyter-server1:
+    image: bf-course/jupyter
+    environment:
+      JUPYTER_TOKEN: bf2024
+      SERVER_BASE_URL: server1
+    volumes:
+      - ./code:/home/jovyan/code
+
+  jupyter-server2:
+    image: bf-course/jupyter
+    environment:
+      JUPYTER_TOKEN: bf2024
+      SERVER_BASE_URL: server2
