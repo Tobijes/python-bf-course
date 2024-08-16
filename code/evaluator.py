@@ -13,7 +13,8 @@ def pjudge(*s):
 def evaluate(output, result, key):
     if output == result:
         print("-----------------")
-        pjudge("I gjorde det! Perfekt! Her er en bid af koden I skal bruge:", key)
+        pjudge("I gjorde det! Perfekt! Her er en bid af nøglen I skal bruge:")
+        pjudge(key)
         print("-----------------")
         return True
     else:
